@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { db } from "./db";
-import { signUpSchema } from "@/validations/auth";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -63,4 +62,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   secret: process.env.AUTH_SECRET,
+  trustHost: true,
 });
